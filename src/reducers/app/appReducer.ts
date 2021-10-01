@@ -1,4 +1,6 @@
-import { createImmutableReducer } from "../../tools/redux-actions";
+import { createFetchReducer } from "../../tools/redux-actions";
+import { getWorkers} from './appActions'
 
-
-export const appReducer = createImmutableReducer({ hello: 'worls'})
+export const appReducer = createFetchReducer({
+    workers: getWorkers.fetchKey([])
+})
