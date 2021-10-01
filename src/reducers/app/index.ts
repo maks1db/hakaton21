@@ -1,2 +1,1 @@
-export { appReducer, AppStateType } from "./appReducer";
-export * from "./appReducer";
+export { appReducer } from "./appReducer";

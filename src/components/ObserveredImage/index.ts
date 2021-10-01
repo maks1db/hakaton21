@@ -1,0 +1,1 @@
+export { ObserveredImage } from "./ObserveredImage";

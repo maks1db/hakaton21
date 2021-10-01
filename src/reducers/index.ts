@@ -1,5 +1,7 @@
-import { appReducer, AppStateType } from "./app";
-import { settingsReducer, SettingsStateType } from "./settings";
+import { appReducer } from "./app";
+import { AppStateType } from './app/appReducer'
+import { settingsReducer } from "./settings";
+import { SettingsStateType } from './settings/types'
 import { combineReducers } from "redux";
 
 export type State = {
