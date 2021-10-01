@@ -1,8 +1,4 @@
 export { settingsReducer } from "./settingsReducer";
 export {
-    addField,
-    addFilter,
-    addGroup,
-    addSort,
-    removeField,
+    updateSetting
 } from "./settingsActions";

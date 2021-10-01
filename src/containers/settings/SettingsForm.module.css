@@ -1,0 +1,28 @@
+
+.formControls {
+    display: flex;
+    flex-direction: column;
+    width: 40px;
+    position: absolute;
+    right: -60px;
+}
+
+.formTable tr td {
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+}
+
+.formTable select {
+    margin-bottom: 0;
+    background-color: #fff;
+}
+
+.formTable input {
+    margin-bottom: 0;
+    background-color: #fff !important;
+}
+
+.active {
+    background: #f4f5f6;
+}
