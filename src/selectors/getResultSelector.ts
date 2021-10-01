@@ -21,6 +21,8 @@ export const getResultSelector = createSelector(
             order: sortFields.map(({ value }) => (value > 0 ? "asc" : "desc")),
         };
 
+        const cash = new Set();
+        const pickItemsKeys = rest.fields.map(prop('field'));
         const items = pipe(
             result,
             filter<EmployeeDTO>((item) => {
@@ -35,16 +37,28 @@ export const getResultSelector = createSelector(
                 }, true);
                 return shouldEnable;
             }),
+            reduce((acc, item) => {
+                const listItem = pick(pickItemsKeys, item);
+                const cashValue = Object.values(listItem).join();
+
+                if (!cash.has(cashValue)) {
+                    // @ts-ignore
+                    acc.push(listItem);
+                    cash.add(cashValue);
+                }
+
+                return acc;
+            }, []),
             (list) => sortArray(list, sortConfig) as EmployeeDTO[]
         );
 
-        const omitKeys = rest.groups.map(prop("field"));
-        const cash = new Set();
+        const omitGroupKeys = rest.groups.map(prop("field"));
+        cash.clear()
 
         const groups = pipe(
             items,
             reduce((acc, item) => {
-                const group = pick(omitKeys, item);
+                const group = pick(omitGroupKeys, item);
                 const cashValue = Object.values(group).join();
 
                 if (!cash.has(cashValue)) {
