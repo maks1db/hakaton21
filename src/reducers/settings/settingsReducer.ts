@@ -10,8 +10,8 @@ import {
 import { FieldType } from "../../types";
 
 const initialState: SettingsStateType = {
-    fields: [],
-    filters: [],
+    fields: [{ field: "name" }],
+    filters: [{ field: "name", value: "" }],
     groups: [],
     sort: [],
 };

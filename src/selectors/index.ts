@@ -1,1 +1,1 @@
-export { getEmployeesSelector } from './getEmployeesSelector'
+export { getResultSelector } from './getResultSelector'

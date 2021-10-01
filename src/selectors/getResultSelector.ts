@@ -6,12 +6,12 @@ import { pick, prop, filter, reduce } from "ramda";
 import { pipe } from "fp-ts/lib/function";
 import { EmployeeDTO } from "../types";
 
-const getEmployees = (state: State) => state.app.employees.data;
+const getResult = (state: State) => state.app.result.data;
 const getSettings = (state: State) => state.settings;
 
-export const getEmployeesSelector = createSelector(
-    [getEmployees, getSettings],
-    (employees, settings) => {
+export const getResultSelector = createSelector(
+    [getResult, getSettings],
+    (result, settings) => {
         const { filters, sort, ...rest } = settings;
         const sortFields =
             sort.length === 0 ? [{ field: "name", direction: 1 }] : sort;
@@ -23,7 +23,7 @@ export const getEmployeesSelector = createSelector(
         };
 
         const items = pipe(
-            employees,
+            result,
             filter<EmployeeDTO>((item) => {
                 const shouldEnable = filters.reduce((acc, { field, value }) => {
                     const fieldValue: string = item[field];

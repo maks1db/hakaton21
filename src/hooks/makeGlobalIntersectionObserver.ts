@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
-import { pipe } from 'ramda';
-import debounce from 'debounce';
+import { useState, useEffect, useRef } from "react";
+import { pipe } from "ramda";
+import debounce from "debounce";
 
 type CallbackFnType = (
     isIntersecting: boolean,
@@ -31,7 +31,9 @@ interface HookProps {
     forceUpdate?: boolean | string | number;
 }
 
-export const makeGlobalIntersectionObserver = (config: IntersectionObserverInit) => {
+export const makeGlobalIntersectionObserver = (
+    config: IntersectionObserverInit
+) => {
     /**
      * Функции зарегистрированных элементов
      */
@@ -43,8 +45,8 @@ export const makeGlobalIntersectionObserver = (config: IntersectionObserverInit)
 
     let observer;
 
-    if ('IntersectionObserver' in window) {
-        observer = new window.IntersectionObserver(entriesList => {
+    if ("IntersectionObserver" in window) {
+        observer = new window.IntersectionObserver((entriesList) => {
             entriesList.forEach(({ target, isIntersecting }) => {
                 const callbackFn = entriesFnMap.get(target);
                 callbackFn?.(isIntersecting);
@@ -60,7 +62,10 @@ export const makeGlobalIntersectionObserver = (config: IntersectionObserverInit)
 
     function useGlobalIntersectionObserver(props?: HookProps) {
         const {
-            key, intersectionHandler, unmountIntersectedKey = true, forceUpdate,
+            key,
+            intersectionHandler,
+            unmountIntersectedKey = true,
+            forceUpdate,
         } = props || {};
 
         const ref = useRef(null);
@@ -86,8 +91,11 @@ export const makeGlobalIntersectionObserver = (config: IntersectionObserverInit)
                 if (unmountIntersectedKey) {
                     observeredKeys.delete(mapKey);
                 }
-                entriesFnMap.delete(ref.current);
-                observer.unobserve(ref.current);
+
+                if (ref.current) {
+                    entriesFnMap.delete(ref.current);
+                    observer.unobserve(ref.current);
+                }
             };
 
             /**
@@ -116,7 +124,10 @@ export const makeGlobalIntersectionObserver = (config: IntersectionObserverInit)
                 /**
                  * Регистрируем функцию текущего элемента
                  */
-                entriesFnMap.set(ref.current, debounce(entriesAction, DEBOUNCE_REGISTRATION));
+                entriesFnMap.set(
+                    ref.current,
+                    debounce(entriesAction, DEBOUNCE_REGISTRATION)
+                );
                 /**
                  * Регистриурем ключ текущего элемента для фиксации во всем жизненном цикле приложения
                  */
@@ -138,4 +149,3 @@ export const makeGlobalIntersectionObserver = (config: IntersectionObserverInit)
 
     return { useGlobalIntersectionObserver, observer };
 };
-

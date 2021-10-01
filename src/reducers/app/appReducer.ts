@@ -4,19 +4,19 @@ import {
     pipeReducers,
 } from "../../tools/redux-actions";
 import {
-    getEmployees,
+    getData,
     addVisibilityCount,
     resetVisibilityCount,
 } from "./appActions";
 
-const EMPLOYEE_COUNT_PER_STEP = 30;
+const COUNT = 30;
 
 const [fetchState, fetchReducer] = createFetchReducer({
-    employees: getEmployees.fetchKey([]),
+    result: getData.fetchKey([]),
 });
 
 const initialState = {
-    visibilityCount: EMPLOYEE_COUNT_PER_STEP,
+    visibilityCount: COUNT,
     ...fetchState,
 };
 
@@ -25,11 +25,11 @@ export type AppStateType = typeof initialState;
 const reducer = createImmutableReducer(initialState)
     .chain(
         addVisibilityCount,
-        (state) => (state.visibilityCount += EMPLOYEE_COUNT_PER_STEP)
+        (state) => (state.visibilityCount += COUNT)
     )
     .chain(
         resetVisibilityCount,
-        (state) => (state.visibilityCount = EMPLOYEE_COUNT_PER_STEP)
+        (state) => (state.visibilityCount = COUNT)
     );
 
 

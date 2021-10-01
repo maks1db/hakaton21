@@ -1,4 +1,4 @@
-import { getEmployeesSelector } from "./getEmployeesSelector";
+import { getResultSelector } from "./getResultSelector";
 import { State } from "../reducers";
 import { employees } from "../api/fixtures";
 
@@ -6,7 +6,7 @@ const makeState = (options: Partial<State["settings"]>, data?: any[]) =>
     ({
         app: {
             visibilityCount: 30,
-            employees: {
+            result: {
                 data: data || employees,
                 isFetching: false,
             },
@@ -26,7 +26,7 @@ describe("Тестирование селектора getEmployeesSelector", () 
             filters: [{ field: "name", value: "виктор" }],
         });
 
-        const { items } = getEmployeesSelector(state);
+        const { items } = getResultSelector(state);
 
         expect(items[0].name).toBe("Виктория Тимофеевна Голубева");
     });
@@ -37,7 +37,7 @@ describe("Тестирование селектора getEmployeesSelector", () 
             sort: [{ field: "name", direction: 1 }],
         });
 
-        const { items } = getEmployeesSelector(state);
+        const { items } = getResultSelector(state);
 
         expect(items.map((x) => x.name)).toMatchObject([
             "Анисимов Эмиль Брониславович",
@@ -52,7 +52,7 @@ describe("Тестирование селектора getEmployeesSelector", () 
             sort: [{ field: "name", direction: -1 }],
         });
 
-        const { items } = getEmployeesSelector(state);
+        const { items } = getResultSelector(state);
 
         expect(items.map((x) => x.name)).toEqual([
             "Остромир Филиппович Бобров",
@@ -70,7 +70,7 @@ describe("Тестирование селектора getEmployeesSelector", () 
             sort: [{ field: "name", direction: -1 }],
         });
 
-        const { items } = getEmployeesSelector(state);
+        const { items } = getResultSelector(state);
 
         expect(items.map((x) => x.name)).toMatchObject([
             "Анисимов Эмиль Брониславович",
@@ -99,7 +99,7 @@ describe("Тестирование селектора getEmployeesSelector", () 
             data
         );
 
-        const { items } = getEmployeesSelector(state);
+        const { items } = getResultSelector(state);
 
         expect(items).toMatchObject([
             { date: "2014-02-02", foo: "aaa" },
@@ -120,7 +120,7 @@ describe("Тестирование селектора getEmployeesSelector", () 
             groups: [{ field: "position" }],
         });
 
-        const { groups } = getEmployeesSelector(state);
+        const { groups } = getResultSelector(state);
 
         expect(groups).toMatchObject([
             { position: "Востоковед" },

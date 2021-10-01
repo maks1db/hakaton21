@@ -1,0 +1,12 @@
+
+.formControls {
+    display: flex;
+    flex-direction: column;
+    width: 40px;
+    position: absolute;
+    right: -60px;
+}
+
+.formTable tr td {
+    cursor: pointer;
+}

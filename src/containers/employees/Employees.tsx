@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { useSelector } from "react-redux";
-import { getEmployeesSelector } from "../../selectors";
+import { getResultSelector } from "../../selectors";
 import { Card } from "./Card";
 
 export const Employees: FC = () => {
-    const { items } = useSelector(getEmployeesSelector);
+    const { items } = useSelector(getResultSelector);
     return (
         <table>
             <thead>

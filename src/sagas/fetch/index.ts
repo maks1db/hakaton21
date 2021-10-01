@@ -1,8 +1,8 @@
 import { all } from 'redux-saga/effects'
-import { fetchEmployeesSaga } from './fetchEmployeesSaga'
+import { fetchDataSaga } from './fetchDataSaga'
 
 export function* fetchSaga() {
     yield all([
-        fetchEmployeesSaga()
+        fetchDataSaga()
     ])
 }

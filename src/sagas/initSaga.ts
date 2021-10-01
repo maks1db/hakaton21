@@ -1,8 +1,8 @@
 import { takeLatest, put } from "redux-saga/effects";
-import { getEmployees, initApp } from "../reducers/app/appActions";
+import { getData, initApp } from "../reducers/app/appActions";
 
 function* initWorker() {
-    yield put(getEmployees());
+    yield put(getData());
 }
 
 export function* initSaga() {
