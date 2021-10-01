@@ -18,7 +18,7 @@ export interface EmployeeDTO {
 }
 
 export interface FieldType {
-    field: string;
+    field: keyof EmployeeDTO;
 }
 
 export interface SortType extends FieldType {

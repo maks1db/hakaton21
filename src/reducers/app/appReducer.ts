@@ -20,6 +20,8 @@ const initialState = {
     ...fetchState,
 };
 
+export type AppStateType = typeof initialState;
+
 const reducer = createImmutableReducer(initialState)
     .chain(
         addVisibilityCount,
