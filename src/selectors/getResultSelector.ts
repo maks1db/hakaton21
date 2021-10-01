@@ -14,12 +14,11 @@ export const getResultSelector = createSelector(
     (result, settings) => {
         const { filters, sort, ...rest } = settings;
         const sortFields =
-            sort.length === 0 ? [{ field: "name", direction: 1 }] : sort;
+            sort.length === 0 ? [{ field: "name", value: 1 }] : sort;
+
         const sortConfig = {
             by: sortFields.map(({ field }) => field),
-            order: sortFields.map(({ direction }) =>
-                direction > 0 ? "asc" : "desc"
-            ),
+            order: sortFields.map(({ value }) => (value > 0 ? "asc" : "desc")),
         };
 
         const items = pipe(
@@ -29,7 +28,9 @@ export const getResultSelector = createSelector(
                     const fieldValue: string = item[field];
 
                     return acc
-                        ? fieldValue.toLowerCase().includes(value.toLowerCase())
+                        ? fieldValue
+                              .toLowerCase()
+                              .includes((value || "").toLowerCase())
                         : false;
                 }, true);
                 return shouldEnable;

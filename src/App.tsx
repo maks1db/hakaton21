@@ -1,11 +1,11 @@
-import { Employees } from "./containers/employees";
+import { List } from "./containers/list";
 import { Settings } from "./containers/settings";
 import styles from "./App.module.css";
 
 function App() {
     return (
         <div className={styles.wrapper}>
-            <Employees />
+            <List />
             <Settings />
         </div>
     );

@@ -14,8 +14,8 @@ const mapState = (state: State) => ({
 
 const mapTypes: Record<keyof State["settings"], any> = {
     fields: { type: "field", title: "Колонки" },
-    groups: { type: "fieldValue", title: "Группировка" },
-    sort: { type: "field", title: "Сортировка" },
+    groups: { type: "field", title: "Группировка" },
+    sort: { type: "fieldSortValue", title: "Сортировка" },
     filters: { type: "fieldValue", title: "Фильтры" },
 };
 

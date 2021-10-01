@@ -34,7 +34,7 @@ describe("Тестирование селектора getEmployeesSelector", () 
     it("Должен отфильтровать по значению и отсортировать по возрастанию", () => {
         const state = makeState({
             filters: [{ field: "name", value: "ич" }],
-            sort: [{ field: "name", direction: 1 }],
+            sort: [{ field: "name", value: 1 }],
         });
 
         const { items } = getResultSelector(state);
@@ -49,7 +49,7 @@ describe("Тестирование селектора getEmployeesSelector", () 
     it("Должен отфильтровать по значению и отсортировать по убыванию", () => {
         const state = makeState({
             filters: [{ field: "name", value: "ич" }],
-            sort: [{ field: "name", direction: -1 }],
+            sort: [{ field: "name", value: -1 }],
         });
 
         const { items } = getResultSelector(state);
@@ -67,7 +67,7 @@ describe("Тестирование селектора getEmployeesSelector", () 
                 { field: "name", value: "ич" },
                 { field: "position", value: "садовод" },
             ],
-            sort: [{ field: "name", direction: -1 }],
+            sort: [{ field: "name", value: -1 }],
         });
 
         const { items } = getResultSelector(state);
@@ -91,9 +91,9 @@ describe("Тестирование селектора getEmployeesSelector", () 
             {
                 sort: [
                     // @ts-ignore
-                    { field: "foo", direction: 1 },
+                    { field: "foo", value: 1 },
                     // @ts-ignore
-                    { field: "date", direction: -1 },
+                    { field: "date", value: -1 },
                 ],
             },
             data
@@ -114,8 +114,8 @@ describe("Тестирование селектора getEmployeesSelector", () 
     it("Должен дополнительнов вернуть отсортированные группы", () => {
         const state = makeState({
             sort: [
-                { field: "name", direction: -1 },
-                { field: "position", direction: 1 },
+                { field: "name", value: -1 },
+                { field: "position", value: 1 },
             ],
             groups: [{ field: "position" }],
         });

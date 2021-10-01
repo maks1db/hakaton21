@@ -22,7 +22,7 @@ export interface FieldType {
 }
 
 export interface SortType extends FieldType {
-    direction: 1 | -1;
+    value: 1 | -1;
 }
 
 export interface FilterType extends FieldType {

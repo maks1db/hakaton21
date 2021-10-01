@@ -6,7 +6,7 @@ import styles from "./SettingsForm.module.css";
 import cn from "classnames";
 
 interface SettingsFormProps {
-    type: "field" | "fieldValue";
+    type: "field" | "fieldValue" | "fieldSortValue";
     onUpdate: (data: any) => void;
     data: { field: string; value?: string }[];
 }
@@ -20,7 +20,7 @@ export const SettingsForm: FC<SettingsFormProps> = ({
     onUpdate,
 }) => {
     const [activeIndex, setActiveIndex] = useState(-1);
-    const isTwoFieldsCount = type === "fieldValue";
+    const isTwoFieldsCount = type !== "field";
 
     useEffect(() => {
         setActiveIndex(-1);
@@ -31,7 +31,15 @@ export const SettingsForm: FC<SettingsFormProps> = ({
             <div className={styles.formControls}>
                 <button
                     className="button"
-                    onClick={() => onUpdate([...data, { field: keys[0] }])}
+                    onClick={() =>
+                        onUpdate([
+                            ...data,
+                            {
+                                field: keys[0],
+                                value: type === "fieldSortValue" ? 1 : "",
+                            },
+                        ])
+                    }
                 >
                     +
                 </button>
@@ -90,7 +98,7 @@ export const SettingsForm: FC<SettingsFormProps> = ({
                                     ))}
                                 </select>
                             </td>
-                            {isTwoFieldsCount && (
+                            {type === "fieldValue" && (
                                 <td>
                                     <input
                                         value={value}
@@ -103,6 +111,24 @@ export const SettingsForm: FC<SettingsFormProps> = ({
                                             onUpdate(newData);
                                         }}
                                     />
+                                </td>
+                            )}
+                            {type === "fieldSortValue" && (
+                                <td>
+                                    <select
+                                        value={value}
+                                        onChange={(e) => {
+                                            const newData = assocPath(
+                                                [ind, "value"],
+                                                parseInt(e.target.value, 10),
+                                                data
+                                            );
+                                            onUpdate(newData);
+                                        }}
+                                    >
+                                        <option value={1}>Возрастание</option>
+                                        <option value={-1}>Убывание</option>
+                                    </select>
                                 </td>
                             )}
                         </tr>
