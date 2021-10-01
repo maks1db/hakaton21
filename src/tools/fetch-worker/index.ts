@@ -1,0 +1,1 @@
+export { fetchWorker } from './fetchWorker'

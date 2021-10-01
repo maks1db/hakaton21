@@ -23,7 +23,7 @@ export const settingsReducer = createImmutableReducer(initialState)
     .chain(addSort, (state, { payload }) => state.sort.push(payload))
     .chain(removeField, (state, { payload: { field, type } }) => {
         const index = (state[type] as FieldType[]).findIndex(
-            x => x.field === field
+            (x) => x.field === field
         );
-        state[type].splice(index, 1)
+        state[type].splice(index, 1);
     });

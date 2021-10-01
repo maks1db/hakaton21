@@ -1,37 +1,32 @@
-export interface WorkerDTO {
+export interface EmployeeDTO {
     name: string;
-    // Должность
-    position: string;
-    phone: string;
-    email: string;
-    logo: string;
-    telegram: string;
-    // Арт
     art: string;
-    // Команда
+    clan: string;
     command: string;
-    // Директорат
     directorate: string;
-    // Поток
-    stream: string;
-    // Руководиель
-    manager: string;
-    // Тех лид
+    email: string;
+    id: string;
+    latitude: string;
     lead: string;
-    longitude?: string;
-    latitude?: string;
+    logo: string;
+    longitude: string;
+    manager: string;
+    phone: string;
+    position: string;
+    stream: string;
+    telegram: string;
 }
 
 export interface FieldType {
     field: string;
 }
 
-export interface SortType extends Field {
+export interface SortType extends FieldType {
     direction: 1 | -1;
 }
 
-export interface FilterType extends Field {
+export interface FilterType extends FieldType {
     value: string;
 }
 
-export interface GroupType extends Field {}
+export interface GroupType extends FieldType {}
