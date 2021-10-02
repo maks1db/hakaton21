@@ -1,9 +1,12 @@
-import { EmployeeDTO } from "../types";
-import { employees } from "./fixtures";
+const { json, url } = window.__ABB;
 
-export const getEmployees = () =>
-    new Promise<EmployeeDTO[]>((resolve) => {
-        setTimeout(() => {
-            resolve(employees);
-        }, 1000);
+export const getFromSource = (): Promise<any[]>  => {
+    if (url) {
+        return fetch(url).then((r) => r.json());
+    }
+
+    return new Promise((resolve) => {
+        // @ts-ignore
+        resolve(json);
     });
+};

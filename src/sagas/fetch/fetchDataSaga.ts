@@ -5,7 +5,7 @@ import * as api from "../../api";
 
 function* fetchDataWorker() {
     yield fetchWorker({
-        api: api.getEmployees,
+        api: api.getFromSource,
         action: getData,
     });
 }

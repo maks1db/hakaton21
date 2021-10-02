@@ -9,12 +9,14 @@ import { EmployeeDTO } from "../types";
 const getResult = (state: State) => state.app.result.data;
 const getSettings = (state: State) => state.settings;
 
+
+const { sort: defaultSort = [] } = window.__ABB
 export const getResultSelector = createSelector(
     [getResult, getSettings],
     (result, settings) => {
         const { filters, sort, ...rest } = settings;
         const sortFields =
-            sort.length === 0 ? [{ field: "name", value: 1 }] : sort;
+            sort.length === 0 ? defaultSort.map(x => ({ field: x, value: 1 })) : sort;
 
         const sortConfig = {
             by: sortFields.map(({ field }) => field),

@@ -6,11 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <title>Оргструктура</title>
+    <script>
+      window.__ABB = {
+        url: 'http://54.211.173.139/api/employees',
+        scheme:  {
+          name: "Сотрудник",
+          art: "Арт",
+          clan: "Клан",
+          command: "Комманда",
+          directorate: "Директорат",
+          email: "email",
+          lead: "Тим. лид",
+          manager: "Руководитель",
+          phone: "Телефон",
+          position: "Должность",
+          stream: "Стрим",
+          telegram: "telegram",
+          logo: 'Лого'
+        },
+        fields: ['name', 'stream'],
+        sort: ['name']
+      }
+    </script>
+
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
 
+    
     <style>
       .image {
         width: 120px;
