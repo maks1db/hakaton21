@@ -1,0 +1,9 @@
+button {
+    background-color: #0066FF  !important;
+    border-color: #0066FF !important;
+}
+
+.button-outline {
+    background-color: transparent !important;
+    color: #333666 !important;  
+}
