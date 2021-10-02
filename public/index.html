@@ -8,25 +8,29 @@
     <title>Оргструктура</title>
     <script>
       window.__ABB = {
-        url: 'http://54.211.173.139/api/employees',
-        scheme:  {
-          name: "Сотрудник",
-          art: "Арт",
-          clan: "Клан",
-          command: "Комманда",
-          directorate: "Директорат",
-          email: "email",
-          lead: "Тим. лид",
-          manager: "Руководитель",
-          phone: "Телефон",
-          position: "Должность",
-          stream: "Стрим",
-          telegram: "telegram",
-          logo: 'Лого'
+        scheme: {
+            telegram: "Telegram",
+            category: "Категория",
+            desc: "Описание",
         },
-        fields: ['name', 'stream'],
-        sort: ['name']
-      }
+        fields: ['telegram', 'category'],
+        sort: ['category'],
+        json: [
+            {
+                id: 1,telegram: "@qweqwe",category: "Развлечения",desc: "Смешнявки от нашей команды",
+            },
+            {
+                id: 2,telegram: "@kek",category: "Работа",desc: "Чат с руководством",
+            },
+            {
+                id: 3,telegram: "@foo",category: "Развлечения",desc: "Просто болталка",
+            },
+            {
+                id: 4,telegram: "@bar",category: "Хобби",desc: "Много интересного про динощавров",
+            },
+        ],
+    };
+
     </script>
 
   </head>

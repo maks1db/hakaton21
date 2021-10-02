@@ -1,9 +1,10 @@
 import { assocPath, remove } from "ramda";
 import { FC, useState, useEffect } from "react";
 import { getSchemeKey, getSchemeValue } from "../../helpers";
-import { scheme } from "../../model";
 import styles from "./SettingsForm.module.css";
 import cn from "classnames";
+
+const { scheme } = window.__ABB
 
 interface SettingsFormProps {
     type: "field" | "fieldValue" | "fieldSortValue";
