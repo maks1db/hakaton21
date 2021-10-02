@@ -22,7 +22,10 @@ export const getResultSelector = createSelector(
         };
 
         const cash = new Set();
-        const pickItemsKeys = rest.fields.map(prop('field'));
+
+        const pickItemsKeys = rest.fields.map(prop("field"));
+        const pickGroupKeys = rest.groups.map(prop("field"));
+
         const items = pipe(
             result,
             filter<EmployeeDTO>((item) => {
@@ -40,10 +43,15 @@ export const getResultSelector = createSelector(
             reduce((acc, item) => {
                 const listItem = pick(pickItemsKeys, item);
                 const cashValue = Object.values(listItem).join();
+                const group = pick(pickGroupKeys, item);
 
                 if (!cash.has(cashValue)) {
                     // @ts-ignore
-                    acc.push(listItem);
+                    acc.push({
+                        ...listItem,
+                        // @ts-ignore
+                        group: Object.values(group).join(),
+                    });
                     cash.add(cashValue);
                 }
 
@@ -52,24 +60,27 @@ export const getResultSelector = createSelector(
             (list) => sortArray(list, sortConfig) as EmployeeDTO[]
         );
 
-        const omitGroupKeys = rest.groups.map(prop("field"));
-        cash.clear()
+        cash.clear();
 
         const groups = pipe(
             items,
             reduce((acc, item) => {
-                const group = pick(omitGroupKeys, item);
+                const group = pick(pickGroupKeys, item);
                 const cashValue = Object.values(group).join();
 
                 if (!cash.has(cashValue)) {
                     // @ts-ignore
-                    acc.push(group);
+                    acc.push({
+                        ...group,
+                        // @ts-ignore
+                        items: items.filter((x) => x.group === cashValue),
+                    });
                     cash.add(cashValue);
                 }
 
                 return acc;
             }, []),
-            (list) => sortArray(list, sortConfig) as Partial<EmployeeDTO>[]
+            (list) => sortArray(list, sortConfig) as (Partial<EmployeeDTO> & { items: EmployeeDTO[] })[]
         );
 
         return { items, groups };

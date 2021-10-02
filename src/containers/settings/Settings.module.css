@@ -14,7 +14,7 @@
 }
 
 .form {
-    background: #fff;
+    background: rgba(255,255,255,.95);
     position: fixed;
     z-index: 8;
     bottom: 70px;
